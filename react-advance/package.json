@@ -5,6 +5,7 @@
   "dependencies": {
     "echarts": "^4.4.0",
     "echarts-for-react": "^2.0.15-beta.1",
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
