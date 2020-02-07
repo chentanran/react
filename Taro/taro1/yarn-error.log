@@ -1,0 +1,177 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @tarojs/mini-runner --silent --no-progress
+
+PATH: 
+  C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\.bin;C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\.bin;C:\Users\21592\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\.bin;C:\Users\21592\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Python27\;C:\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_161\bin;C:\Program Files\Java\jdk1.8.0_161\jre\bin;C:\Program Files (x86)\Yarn\bin\;C:\Android\tools;C:\Android\platform-tools;C:\Program Files\TortoiseSVN\bin;C:\Program Files\nodejs\;C:\Users\21592\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\21592\AppData\Local\Programs\Python\Python38\;C:\Users\21592\AppData\Local\Microsoft\WindowsApps;C:\Users\21592\AppData\Local\GitHubDesktop\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\21592\AppData\Local\Yarn\bin;C:\Users\21592\AppData\Local\Microsoft\WindowsApps;C:\Users\21592\AppData\Roaming\npm;C:\sqlite;
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  12.11.1
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "taro1",
+    "version": "1.0.0",
+    "private": true,
+    "description": "学习多端框架的demo",
+    "templateInfo": {
+      "name": "redux",
+      "typescript": false,
+      "css": "less"
+    },
+    "scripts": {
+      "build:weapp": "taro build --type weapp",
+      "build:swan": "taro build --type swan",
+      "build:alipay": "taro build --type alipay",
+      "build:tt": "taro build --type tt",
+      "build:h5": "taro build --type h5",
+      "build:rn": "taro build --type rn",
+      "build:qq": "taro build --type qq",
+      "build:quickapp": "taro build --type quickapp",
+      "dev:weapp": "npm run build:weapp -- --watch",
+      "dev:swan": "npm run build:swan -- --watch",
+      "dev:alipay": "npm run build:alipay -- --watch",
+      "dev:tt": "npm run build:tt -- --watch",
+      "dev:h5": "npm run build:h5 -- --watch",
+      "dev:rn": "npm run build:rn -- --watch",
+      "dev:qq": "npm run build:qq -- --watch",
+      "dev:quickapp": "npm run build:quickapp -- --watch"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "@tarojs/components": "2.0.2",
+      "@tarojs/components-qa": "2.0.2",
+      "@tarojs/redux": "2.0.2",
+      "@tarojs/redux-h5": "2.0.2",
+      "@tarojs/router": "2.0.2",
+      "@tarojs/taro": "2.0.2",
+      "@tarojs/taro-alipay": "2.0.2",
+      "@tarojs/taro-h5": "2.0.2",
+      "@tarojs/taro-qq": "2.0.2",
+      "@tarojs/taro-quickapp": "2.0.2",
+      "@tarojs/taro-swan": "2.0.2",
+      "@tarojs/taro-tt": "2.0.2",
+      "@tarojs/taro-weapp": "2.0.2",
+      "babel-runtime": "^6.26.0",
+      "nervjs": "^1.5.5",
+      "nerv-devtools": "^1.5.5",
+      "redux": "^4.0.0",
+      "redux-logger": "^3.0.6",
+      "redux-thunk": "^2.3.0",
+      "regenerator-runtime": "0.11.1"
+    },
+    "devDependencies": {
+      "@types/react": "^16.4.8",
+      "@types/webpack-env": "^1.13.6",
+      "@tarojs/mini-runner": "2.0.2",
+      "@tarojs/webpack-runner": "2.0.2",
+      "babel-plugin-transform-class-properties": "^6.24.1",
+      "babel-plugin-transform-decorators-legacy": "^1.3.4",
+      "babel-plugin-transform-jsx-stylesheet": "^0.6.5",
+      "babel-plugin-transform-object-rest-spread": "^6.26.0",
+      "babel-plugin-transform-runtime": "^6.23.0",
+      "babel-preset-env": "^1.6.1",
+      "babel-eslint": "^8.2.3",
+      "eslint": "^5.16.0",
+      "eslint-config-taro": "2.0.2",
+      "eslint-plugin-react": "^7.8.2",
+      "eslint-plugin-react-hooks": "^1.6.1",
+      "eslint-plugin-import": "^2.12.0",
+      "stylelint": "9.3.0",
+      "stylelint-config-taro-rn": "2.0.2",
+      "stylelint-taro-rn": "2.0.2",
+      "eslint-plugin-taro": "2.0.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\node-sass: Command failed.
+  Exit code: 1
+  Command: C:\WINDOWS\system32\cmd.exe
+  Arguments: /d /s /c node scripts/build.js
+  Directory: C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\node-sass
+  Output:
+  Building: C:\Program Files\nodejs\node.exe C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\node-gyp\bin\node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
+  gyp info it worked if it ends with ok
+  gyp verb cli [
+  gyp verb cli   'C:\\Program Files\\nodejs\\node.exe',
+  gyp verb cli   'C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\node-gyp\\bin\\node-gyp.js',
+  gyp verb cli   'rebuild',
+  gyp verb cli   '--verbose',
+  gyp verb cli   '--libsass_ext=',
+  gyp verb cli   '--libsass_cflags=',
+  gyp verb cli   '--libsass_ldflags=',
+  gyp verb cli   '--libsass_library='
+  gyp verb cli ]
+  gyp info using node-gyp@3.8.0
+  gyp info using node@12.11.1 | win32 | x64
+  gyp verb command rebuild []
+  gyp verb command clean []
+  gyp verb clean removing "build" directory
+  gyp verb command configure []
+  gyp verb download using dist-url https://npm.taobao.org/dist
+  gyp verb check python checking for Python executable "python2" in the PATH
+  gyp verb `which` failed Error: not found: python2
+  gyp verb `which` failed     at getNotFoundError (C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:13:12)
+  gyp verb `which` failed     at F (C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:68:19)
+  gyp verb `which` failed     at E (C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:80:29)
+  gyp verb `which` failed     at C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:89:16
+  gyp verb `which` failed     at C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\isexe\index.js:42:5
+  gyp verb `which` failed     at C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\isexe\windows.js:36:5
+  gyp verb `which` failed     at FSReqCallback.oncomplete (fs.js:169:21)
+  gyp verb `which` failed  python2 Error: not found: python2
+  gyp verb `which` failed     at getNotFoundError (C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:13:12)
+  gyp verb `which` failed     at F (C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:68:19)
+  gyp verb `which` failed     at E (C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:80:29)
+  gyp verb `which` failed     at C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\which\which.js:89:16
+  gyp verb `which` failed     at C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\isexe\index.js:42:5
+  gyp verb `which` failed     at C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\isexe\windows.js:36:5
+  gyp verb `which` failed     at FSReqCallback.oncomplete (fs.js:169:21) {
+  gyp verb `which` failed   stack: 'Error: not found: python2\n' +
+  gyp verb `which` failed     '    at getNotFoundError (C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\which\\which.js:13:12)\n' +
+  gyp verb `which` failed     '    at F (C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\which\\which.js:68:19)\n' +
+  gyp verb `which` failed     '    at E (C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\which\\which.js:80:29)\n' +
+  gyp verb `which` failed     '    at C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\which\\which.js:89:16\n' +
+  gyp verb `which` failed     '    at C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\isexe\\index.js:42:5\n' +
+  gyp verb `which` failed     '    at C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\isexe\\windows.js:36:5\n' +
+  gyp verb `which` failed     '    at FSReqCallback.oncomplete (fs.js:169:21)',
+  gyp verb `which` failed   code: 'ENOENT'
+  gyp verb `which` failed }
+  gyp verb check python checking for Python executable "python" in the PATH
+  gyp verb `which` succeeded python C:\Users\21592\AppData\Local\Programs\Python\Python38\python.EXE
+  gyp ERR! configure error 
+  gyp ERR! stack Error: Command failed: C:\Users\21592\AppData\Local\Programs\Python\Python38\python.EXE -c import sys; print "%s.%s.%s" % sys.version_info[:3];
+  gyp ERR! stack   File "<string>", line 1
+  gyp ERR! stack     import sys; print "%s.%s.%s" % sys.version_info[:3];
+  gyp ERR! stack                       ^
+  gyp ERR! stack SyntaxError: invalid syntax
+  gyp ERR! stack 
+  gyp ERR! stack     at ChildProcess.exithandler (child_process.js:295:12)
+  gyp ERR! stack     at ChildProcess.emit (events.js:210:5)
+  gyp ERR! stack     at maybeClose (internal/child_process.js:1021:16)
+  gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:283:5)
+  gyp ERR! System Windows_NT 10.0.18363
+  gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\21592\\Desktop\\git\\react\\Taro\\taro1\\node_modules\\node-gyp\\bin\\node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
+  gyp ERR! cwd C:\Users\21592\Desktop\git\react\Taro\taro1\node_modules\node-sass
+  gyp ERR! node -v v12.11.1
+  gyp ERR! node-gyp -v v3.8.0
+  gyp ERR! not ok 
+  Build failed with error code: 1
+      at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Program Files (x86)\Yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:30281:17)
+      at ChildProcess.emit (events.js:210:5)
+      at maybeClose (internal/child_process.js:1021:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:283:5)
