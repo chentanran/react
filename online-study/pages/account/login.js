@@ -1,12 +1,13 @@
 // 1.0 导入样式
 import css from './login.less'
-import fetchHelper from '../../kits/fetchHelper.js'
+import fetchHelper from '../../kits/fetch.js'
+import Register from '../../components/account/register'
 // 2.0 导入antd这个ui组件中的 Tabs, Icon,Form,, Input, Button
 import { Form, Icon, Input, Button, Tabs, Row, Col,message } from 'antd';
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 // 将用户对象存储到sessionStroage中
-import {setUser} from '../../kits/storageHelper.js'
+import {setUser} from '../../kits/storage.js'
 class login extends React.Component {
   // 负责执行登录请求的
   login = (e) => {
@@ -70,7 +71,8 @@ class login extends React.Component {
         </FormItem>
         </Form>
         </TabPane>
-        <TabPane tab={<span><Icon type="android" />注册</span>} key="2">
+        <TabPane tab={<span><Icon type="user" />注册</span>} key="2">
+          <Register></Register>
         </TabPane>
         </Tabs>
         </Col>
