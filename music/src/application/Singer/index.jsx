@@ -8,6 +8,7 @@ import { HEADER_HEIGHT } from '../../api/config'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeEnterLoading, getSingerInfo } from './store/actionCreator'
 import Loading from '../../baseUI/loading/index'
+import MusicNote from '../../baseUI/music-note'
 
 function Singer(props) {
   const [showStatus, setShowStatus] = useState(true)
@@ -18,6 +19,9 @@ function Singer(props) {
 
   const artist = artistImmu ? artistImmu.toJS() : {}
   const songs = songsImmu ? songsImmu.toJS() : []
+
+  // 判断歌曲列表长度
+  const songsCount = useSelector(state => state.getIn(['player', 'playList'])).size
 
   const dispatch = useDispatch()
   const id = props.match.params.id
@@ -59,6 +63,8 @@ function Singer(props) {
   const initialHeight = useRef(0)
   // 往上偏移尺寸, 露出圆角
   const OFFSET = 5
+  // music-note
+  const musicNoteRef = useRef()
 
   useEffect(() => {
     let h = imageWrapper.current.offsetHeight
@@ -112,6 +118,10 @@ function Singer(props) {
     }
   },[])
 
+  const musicAnimation = (x, y) => {
+    musicNoteRef.current.startAnimation({x, y})
+  }
+
   return (
     <CSSTransition
       in={showStatus}
@@ -121,7 +131,7 @@ function Singer(props) {
       unmountOnExit
       onExited={() => props.history.goBack()}
     >
-      <Container>
+      <Container play={songsCount}>
         <Header title={"头部"} ref={header} handleClick={setShowStatusFalse}></Header>
         <ImgWrapper ref={imageWrapper} bgUrl={artist.picUrl}>
           <div className="filter"></div>
@@ -136,12 +146,14 @@ function Singer(props) {
             <SongsList
               songs={songs}
               showCollect={false}
+              musicAnimation={musicAnimation}
             ></SongsList>
           </Scroll>
         </SongListWrapper>
         {
           loading ? <Loading></Loading> : null
         }
+        <MusicNote ref={musicNoteRef}></MusicNote>
       </Container>
     </CSSTransition>
   )

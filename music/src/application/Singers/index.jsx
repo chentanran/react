@@ -52,6 +52,9 @@ function Singers(props) {
   const pageCount = useSelector(state => state.getIn(['singers', 'pageCount']))
 
   const singerListJS = singerList ? singerList.toJS() : []
+
+  // 判断歌曲列表长度
+  const songsCount = useSelector(state => state.getIn(['player', 'playList'])).size
   // dispatch
   const dispatch = useDispatch()
 
@@ -149,7 +152,7 @@ function Singers(props) {
           handleClick={val => handleUpdateAlpha (val)}
           oldVal={alpha}></Horizen>
       </NavContainer>
-      <ListContainer>
+      <ListContainer play={songsCount}>
         <Scroll
           pullUp={ handlePullUp }
           pullDown = { handlePullDown }

@@ -42,9 +42,20 @@ function ProgressBar(props) {
   const progressBtn = useRef()
   const [touch, setTouch] = useState({})
 
-  const { percentChange } = props
+  const transform = prefixStyle('transform')
+
+  const { percentChange, percent } = props
 
   const progressBtnWidth = 16
+
+  useEffect(() => {
+    if (percent >= 0 && percent <= 1 && !touch.initiated) {
+      const barWidth = progressBar.current.clientWidth - progressBtnWidth
+      const offsetWidth = percent * barWidth
+      progress.current.style.width = `${offsetWidth}px`
+      progressBtn.current.style[transform] = `translate3d(${offsetWidth}px, 0, 0)`
+    }
+  },[percent, touch.initiated,transform])
 
   // 进度条偏移
   const _offset = (offsetWidth) => {

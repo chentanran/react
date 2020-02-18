@@ -1,13 +1,22 @@
 import React, { memo } from 'react'
 import { SongList, SongItem } from './style'
 import { getName } from '../../api/utils'
+import { changePlayList, changeCurrentIndex, changeSequecePlayList } from '../../application/Player/store/actionCreators'
+import { useDispatch } from 'react-redux'
 
 const SongsList = React.forwardRef((props, refs) => {
   const { collectCount, showCollect, songs } = props
   const totalCount = songs.length
+  // 接受触发动画的函数
+  const { musicAnimation } = props  
+  // redux
+  const dispatch = useDispatch()
 
   const selectItem = (e, index) => {
-    console.log(e)
+    dispatch(changePlayList(songs))
+    dispatch(changeCurrentIndex(index))
+    dispatch(changeSequecePlayList(songs))
+    musicAnimation (e.nativeEvent.clientX, e.nativeEvent.clientY)
   }
 
   const songList = list => {

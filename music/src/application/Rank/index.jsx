@@ -13,6 +13,9 @@ function Rank(props) {
   const loading = useSelector(state => state.getIn(['rank', 'loading']))
 
   const rankListJS = rankList ? rankList.toJS() : []
+
+  // 判断歌曲列表长度
+  const songsCount = useSelector(state => state.getIn(['player', 'playList'])).size
   
   const globalStateIndex = filterIndex(rankListJS)
   const officialList = rankListJS.slice(0, globalStateIndex)
@@ -66,7 +69,7 @@ function Rank(props) {
   const displayStyle = loading ? {"display":"none"}:  {"display": ""}
 
   return (
-    <Container>
+    <Container play={songsCount}>
       <Scroll>
         <div>
           <h1 className="offical" style={displayStyle}> 官方榜 </h1>

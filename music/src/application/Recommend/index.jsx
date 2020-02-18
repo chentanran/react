@@ -38,6 +38,8 @@ function Recommend(props) {
   const recommendListJS = recommendList ? recommendList.toJS () : []
 
   const dispatch = useDispatch()
+  // 判断歌曲列表长度
+  const songsCount = useSelector(state => state.getIn(['player', 'playList'])).size
 
   // useEffect(() => {
   //   getBannerDataDispatch()
@@ -54,7 +56,7 @@ function Recommend(props) {
   }, [bannerList.size, recommendList.size, dispatch])
 
   return (
-    <Content>
+    <Content play={songsCount}>
       <Scroll className="list" onScroll={forceCheck}>
         <div>
           <Slider bannerList={bannerListJS}></Slider>

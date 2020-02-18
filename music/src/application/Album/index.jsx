@@ -12,6 +12,7 @@ import { getAlbumList, changeEnterLoading } from './store/actionCreators'
 import { isEmptyObject } from '../../api/utils'
 import Loading from '../../baseUI/loading'
 import SongsList from '../../components/SongList'
+import MusicNote from '../../baseUI/music-note'
 
 function Album(props) {
   const [showStatus, setShowStatus] = useState(true)
@@ -19,6 +20,7 @@ function Album(props) {
   const [title, setTitle] = useState('返回')
 
   const headerEl = useRef()
+  const musicNoteRef = useRef ()
 
   //mock 数据
   // const currentAlbum = {
@@ -108,7 +110,8 @@ function Album(props) {
   const enterLoading = useSelector(state => state.getIn(['album', 'enterLoading']))
 
   const currentAlbumJS = currentAlbum ? currentAlbum.toJS() : {}
-  // console.log(currentAlbumJS)
+  // 判断歌曲列表长度
+  const songsCount = useSelector(state => state.getIn(['player', 'playList'])).size
 
   const dispatch = useDispatch()
   const id = props.match.params.id
@@ -140,6 +143,10 @@ function Album(props) {
   const handleClick = useCallback(() => {
     setShowStatus(false)
   }, [])
+
+  const musicAnimation = (x, y) => {
+    musicNoteRef.current.startAnimation ({ x, y });
+  }
 
   // ui
   const renderTopDesc = () => {
@@ -235,7 +242,7 @@ function Album(props) {
       unmountOnExit
       onExited={props.history.goBack}
     >
-      <Container>
+      <Container play={songsCount}>
         <Header ref={headerEl} title={title} handleClick={handleClick} isMarquee={isMarquee}></Header>
         {
           !isEmptyObject(currentAlbumJS) ? (
@@ -249,6 +256,8 @@ function Album(props) {
                  showCollect={true}
                  songs={currentAlbumJS.tracks}
                  collectCount={currentAlbumJS.subscribedCount}
+                 musicAnimation={musicAnimation}
+                 showBackground={true}
                 ></SongsList>
               </div>
             </Scroll>
@@ -257,6 +266,7 @@ function Album(props) {
         {
           enterLoading ? <Loading></Loading> : null
         }
+        <MusicNote ref={musicNoteRef}></MusicNote>
       </Container>
     </CSSTransition>
   )
