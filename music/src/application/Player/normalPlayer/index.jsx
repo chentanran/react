@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { getName, prefixStyle, formatPlayTime } from "../../../api/utils";
 import {
   NormalPlayerContainer,
@@ -12,14 +12,29 @@ import {
 import { CSSTransition } from "react-transition-group";
 import animations from 'create-keyframe-animation'
 import ProgressBar from '../../../baseUI/progress-bar'
-import { playMode } from '../../../api/config'
+import { playMode, list } from '../../../api/config'
+import Scroll from '../../../components/scroll'
+import { LyricContainer, LyricWrapper, List, ListItem } from "./style"
+import { changeSpeed } from '../store/actionCreators'
+import { useSelector, useDispatch } from 'react-redux'
 
 function NormalPlayer(props) {
   const { song, fullScreen, playing, percent, duration, currentTime, mode } = props
-  const { setFullScreen, clickPlaying, onProgressChange, handlePrev, handleNext, changeMode } = props
+  const { setFullScreen, clickPlaying, onProgressChange, handlePrev, handleNext, changeMode, togglePlayList } = props
+  const { currentLineNum, currentPlayingLyric, currentLyric, clickSpeed } = props
 
   const cdWrapperRef = useRef()
   const normalPlayerRef = useRef()
+  const currentState = useRef('')
+  const lyricScrollRef = useRef()
+  const lyricLineRefs = useRef([])
+
+  const speed = useSelector(state => state.getIn(['player', 'speed']))
+  const dispatch = useDispatch()
+
+  const changeSpeedDispatch = (data) => {
+    dispatch(changeSpeed(data))
+  }
 
   // 启用帧动画
   const enter = () => {
@@ -89,6 +104,8 @@ function NormalPlayer(props) {
     // 一定要注意现在要把 normalPlayer 这个 DOM 给隐藏掉，因为 CSSTransition 的工作只是把动画执行一遍 
     // 不置为 none 现在全屏播放器页面还是存在
     normalPlayerRef.current.style.display = "none"
+    //
+    currentState.current = ''
   }
 
   const getPlayMode = () => {
@@ -102,6 +119,27 @@ function NormalPlayer(props) {
     }
     return content;
   }
+  // 切换当前状态
+  const toggleCurrentState = () => {
+    if (currentState.current !== "lyric") {
+      currentState.current = "lyric";
+    } else {
+      currentState.current = "";
+    }
+  }
+
+  useEffect(() => {
+    if (!lyricScrollRef.current) return
+    let bScroll = lyricScrollRef.current.getBScroll()
+    if (currentLineNum > 5) {
+      // 保持当前歌词在第五条
+      let lineEl = lyricLineRefs.current[currentLineNum - 5]
+      bScroll.scrollToElement(lineEl, 1000)
+    } else {
+      // 当前歌词行 《= 5 直接滚动到最顶端
+      bScroll.scrollTo(0, 0, 1000)
+    }
+  }, [currentLineNum])
 
   return (
     <CSSTransition
@@ -128,35 +166,78 @@ function NormalPlayer(props) {
           <div className="back" onClick={() => { setFullScreen(false) }}>
             <i className="iconfont icon-back">&#xe662;</i>
           </div>
-          <h1 className="title">{song.name}</h1>
-          <h1 className="subtitle">{getName(song.ar)}</h1>
+          <div className="text">
+            <h1 className="title">{song.name}</h1>
+            <h1 className="subtitle">{getName(song.ar)}</h1>
+          </div>
         </Top>
-        <Middle ref={cdWrapperRef}>
-          <CDWrapper>
-            <div className="cd">
-              <img
-                className={`image play ${playing ? '' : 'pause'}`}
-                src={song.al.picUrl + "?param=400x400"}
-                alt=""
-              />
-            </div>
-          </CDWrapper>
+        <Middle ref={cdWrapperRef} onClick={toggleCurrentState}>
+          <CSSTransition
+            timeout={400}
+            classNames="fade"
+            in={currentState.current !== 'lyric'}
+          >
+            <CDWrapper style={{ visibility: currentState.current !== 'lyric' ? 'visible' : 'hidden' }}>
+              <div className={`needle ${playing? '' : 'pause'}`}></div>
+              <div className="cd">
+                <img
+                  className={`image play ${playing ? '' : 'pause'}`}
+                  src={song.al.picUrl + "?param=400x400"}
+                  alt=""
+                />
+              </div>
+              <p className="playing_lyric">{currentPlayingLyric}</p>
+            </CDWrapper>
+          </CSSTransition>
+          <CSSTransition
+            timeout={400}
+            classNames="fade"
+            in={currentState.current === "lyric"}
+          >
+            <LyricContainer>
+              <Scroll ref={lyricScrollRef}>
+                <LyricWrapper
+                  style={{ visibility: currentState.current === "lyric" ? "visible" : "hidden" }}
+                  className="lyric_wrapper"
+                >
+                  {
+                    currentLyric
+                      ? currentLyric.lines.map((item, index) => {
+                        // 拿到每一行歌词的 DOM 对象，后面滚动歌词需要！ 
+                        lyricLineRefs.current[index] = React.createRef();
+                        return (
+                          <p
+                            className={`text ${
+                              currentLineNum === index ? "current" : ""
+                              }`}
+                            key={item + index}
+                            ref={lyricLineRefs.current[index]}
+                          >
+                            {item.txt}
+                          </p>
+                        );
+                      })
+                      : <p className="text pure"> 纯音乐，请欣赏。</p>}
+                </LyricWrapper>
+              </Scroll>
+            </LyricContainer>
+          </CSSTransition>
         </Middle>
         <Bottom className="bottom">
-        <ProgressWrapper>
-          <span className="time time-l">{formatPlayTime(currentTime)}</span>
-          <div className="progress-bar-wrapper">
-            <ProgressBar 
-              percent={percent}
-              onProgressChange={onProgressChange}></ProgressBar>
-          </div>
-          <div className="time time-r">{formatPlayTime(duration)}</div>
-        </ProgressWrapper>
+          <ProgressWrapper>
+            <span className="time time-l">{formatPlayTime(currentTime)}</span>
+            <div className="progress-bar-wrapper">
+              <ProgressBar
+                percent={percent}
+                onProgressChange={onProgressChange}></ProgressBar>
+            </div>
+            <div className="time time-r">{formatPlayTime(duration)}</div>
+          </ProgressWrapper>
           <Operators>
             <div className="icon i-left" onClick={changeMode}>
-              <i 
+              <i
                 className="iconfont"
-                dangerouslySetInnerHTML={{__html: getPlayMode()}}
+                dangerouslySetInnerHTML={{ __html: getPlayMode() }}
               ></i>
             </div>
             <div className="icon i-left" onClick={handlePrev}>
@@ -166,17 +247,32 @@ function NormalPlayer(props) {
               <i className="iconfont"
                 onClick={e => clickPlaying(e, !playing)}
                 dangerouslySetInnerHTML={{
-                  __html : playing ? "&#xe723;" : "&#xe731;"
+                  __html: playing ? "&#xe723;" : "&#xe731;"
                 }}
               ></i>
             </div>
             <div className="icon i-right" onClick={handleNext}>
               <i className="iconfont">&#xe718;</i>
             </div>
-            <div className="icon i-right">
+            <div className="icon i-right" onClick={() => togglePlayList(true)}>
               <i className="iconfont">&#xe640;</i>
             </div>
           </Operators>
+          <List>
+            <span > 倍速听歌 </span>
+            {
+              list.map ((item) => {
+                return (
+                  <ListItem 
+                    key={item.key}
+                    onClick={() => clickSpeed (item.key)}
+                    className={`${speed === item.key ? 'selected': ''}`} >
+                      {item.name}
+                  </ListItem>
+                )
+              })
+            }
+          </List>
         </Bottom>
       </NormalPlayerContainer>
     </CSSTransition>

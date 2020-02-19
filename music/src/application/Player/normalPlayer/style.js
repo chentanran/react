@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import style from "../../../assets/global-style";
+import needle from './needle.png'
 
 const rotate = keyframes`
   0%{
@@ -72,6 +73,12 @@ export const Top = styled.div`
       transform: rotate(90deg);
     }
   }
+  .text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
   .title {
     width: 70%;
     margin: 0 auto;
@@ -107,6 +114,22 @@ export const CDWrapper = styled.div`
   width: 80%;
   box-sizing: border-box;
   height: 80vw;
+  .needle {
+    position: absolute;
+    top: -6.67vw;
+    left: 48vw;
+    width: 25vw;
+    height: 40vw;
+    z-index: 100;
+    background-image: url(${needle});
+    ${style.bgFull ()};
+    transform-origin: 4.5vw 4.5vw;
+    transition: all 0.3s;
+    transform: rotate (0);
+    &.pause {
+      transform: rotate (-30deg);
+    }
+  }
   .cd {
     width: 100%;
     height: 100%;
@@ -152,7 +175,7 @@ export const ProgressWrapper = styled.div`
   .time {
     color: ${style["font-color-desc"]};
     font-size: ${style["font-size-s"]};
-    flex: 0 0 35px;
+    flex: 0 0 30px;
     line-height: 30px;
     width: 30px;
     &.time-l {
@@ -196,5 +219,64 @@ export const Operators = styled.div`
   }
   .icon-favorite {
     color: ${style["theme-color"]};
+  }
+`
+
+export const LyricContainer = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+`;
+export const LyricWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  p {
+    line-height: 32px;
+    color: rgba (255, 255, 255, 0.5);
+    white-space: normal;
+    font-size: ${style["font-size-l"]};
+    &.current {
+      color: #fff;
+    }
+    &.pure {
+      position: relative;
+      top: 30vh;
+    }
+  }
+`
+
+export const List = styled.div`
+  width: 70%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  justify-content: space-around;
+  overflow: hidden;
+  >span:first-of-type {
+    display: block;
+    flex: 0 0 auto;
+    padding: 5px 0;
+    color: ${style["font-color-desc-v2"]};
+    font-size: ${style["font-size-m"]};
+    vertical-align: middle;
+  }
+`
+export const ListItem = styled.span`
+  flex: 0 0 auto;
+  font-size: ${style["font-size-m"]};
+  padding: 5px 5px;
+  border-radius: 10px;
+  color: ${style["font-color-desc-v2"]};
+  &.selected {
+    color: ${style["theme-color"]};
+    border: 1px solid ${style["theme-color"]};
+    opacity: 0.8;
   }
 `

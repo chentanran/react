@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Redirect } from 'react-router-dom'
 import Home from '../application/Home'
-import Recommend from '../application/Recommend'
-import Singers from '../application/Singers'
-import Rank from '../application/Rank'
-import Album from '../application/Album'
-import Singer from '../application/Singer'
+// import Recommend from '../application/Recommend'
+// import Singers from '../application/Singers'
+// import Rank from '../application/Rank'
+// import Album from '../application/Album'
+// import Singer from '../application/Singer'
+// import Search from '../application/Search'
+
+const RecommendComponent = lazy (() => import ("../application/Recommend/"));
+const SingersComponent = lazy (() => import ("../application/Singers/"));
+const RankComponent = lazy (() => import ("../application/Rank/"));
+const AlbumComponent = lazy (() => import ("../application/Album/"));
+const SingerComponent = lazy (() => import ("./../application/Singer/"));
+const SearchComponent = lazy (() => import ("./../application/Search/"));
+
+const SuspenseComponent = Component => props => {
+  return (
+    <Suspense fallback={null}>
+      <Component {...props}></Component>
+    </Suspense>
+  )
+}
 
 export default [
   {
@@ -21,28 +37,46 @@ export default [
       },
       {
         path: '/recommend',
-        component: Recommend,
+        component: SuspenseComponent (RecommendComponent),
         routes: [
           {
             path: '/recommend/:id',
-            component: Album
+            component: SuspenseComponent (AlbumComponent)
           }
         ]
       },
       {
         path: '/singers',
-        component: Singers,
+        component: SuspenseComponent (SingersComponent),
         key: 'singers',
         routes: [
           {
             path: '/singers/:id',
-            component: Singer
+            component: SuspenseComponent (SingerComponent)
           }
         ]
       },
       {
         path: '/rank',
-        component: Rank
+        component: SuspenseComponent (RankComponent),
+        routes: [
+          {
+            path: "/rank/:id",
+            component: SuspenseComponent (AlbumComponent)
+          }
+        ]
+      },
+      {
+        path: '/search',
+        exact: true,
+        key: 'search',
+        component: SuspenseComponent (SearchComponent)
+      },
+      {
+        path: '/album/:id',
+        exact: true,
+        key: 'album',
+        component: SuspenseComponent (AlbumComponent)
       }
     ]
   }

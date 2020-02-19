@@ -1,6 +1,30 @@
 import * as actionTypes from './constants'
 import { fromJS } from 'immutable'
 import { playMode } from '../../../api/config'
+import { findIndex } from '../../../api/utils'
+
+const handleDeleteSong = (state, song) => {
+  const playList = JSON.parse(JSON.stringify(state.get('playList').toJS()))
+  const sequenceList = JSON.parse(JSON.stringify(state.get('sequencePlayList').toJS()))
+  const currentIndex = state.get('currentIndex')
+  // 歌曲在播放列表中的索引
+  const fpIndex = findIndex(song, playList)
+  // 播放列表中删除
+  playList.splice(fpIndex, 1)
+  // 如果在最前面， 那么 currentIndex-- 让当前歌曲正常播放
+  if (fpIndex < currentIndex) {
+    currentIndex--
+  }
+  // sequenceList 直接删除歌曲即可
+  const fsIndex = findIndex(song, sequenceList)
+  sequenceList.splice(fsIndex, 1)
+
+  return state.merge({
+    'playList': fromJS(playList),
+    'sequencePlayList': fromJS(sequenceList),
+    'currentIndex': fromJS(currentIndex)
+  })
+}
 
 const defaultState = fromJS ({
   fullScreen: false,// 播放器是否为全屏模式
@@ -10,7 +34,8 @@ const defaultState = fromJS ({
   mode: playMode.sequence,// 播放模式
   currentIndex: -1,// 当前歌曲在播放列表的索引位置
   showPlayList: false,// 是否展示播放列表
-  currentSong: {} 
+  currentSong: {},
+  speed: 1
 })
 
 export default (state = defaultState, action) => {
@@ -31,6 +56,10 @@ export default (state = defaultState, action) => {
       return state.set ('currentIndex', action.data);
     case actionTypes.SET_SHOW_PLAYLIST:
       return state.set ('showPlayList', action.data);
+    case actionTypes.DELETE_SONG:
+      return handleDeleteSong(state, action.data)
+    case actionTypes.CHANGE_SPEED:
+      return state.set ('speed', action.data)
     default:
       return state;
   }
