@@ -13,6 +13,7 @@ class Home extends Component {
   render() {
     console.log(this.props)
     const { match, location }  = this.props
+    console.log(match)
     return (
       <div>
         <div>home</div>

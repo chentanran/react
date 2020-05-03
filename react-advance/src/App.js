@@ -5,18 +5,20 @@ import React from 'react';
 // import Home from './pages/home'
 // import Transition from './components/transition'
 // import Count from './count/counter'
-import Pile from './components/pile'
+// import Pile from './components/pile'
+import Iegend from './components/legend'
 
 function App() {
   return (
     <div className="App">
-      <Pile></Pile>
+      {/* <Pile></Pile> */}
       {/* <Count></Count> */}
       {/* <Pie></Pie> */}
       {/* <Echarts></Echarts> */}
       {/* <Transition></Transition> */}
       {/* <Index></Index> */}
       {/* <Home></Home> */}
+      <Iegend></Iegend>
     </div>
   );
 }
