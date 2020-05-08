@@ -1,12 +1,13 @@
-import React from 'react'
-import Login from './pages/Login.jsx'
+import React from 'react';
+import 'antd/dist/antd.css';
+import Main from './pages/Main'
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Main />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
