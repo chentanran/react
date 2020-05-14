@@ -4,17 +4,26 @@ import './index.css'
 import { PieChartOutlined, TeamOutlined, UserDeleteOutlined, CopyOutlined } from '@ant-design/icons'
 import { Route } from "react-router-dom";
 import AddArticle from '../AddArticle'
+import ArticleList from '../ArticleList'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-function AdminIndex(){
+function AdminIndex(props){
 
   const [collapsed,setCollapsed] = useState(false)
 
   const onCollapse = collapsed => {
     setCollapsed(collapsed)
   };
+
+  const handleClickArticle = e => {
+    if (e.key === 'addArticle') {
+      props.history.push('/add')
+    } else {
+      props.history.push('/list')
+    }
+  }
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -31,6 +40,7 @@ function AdminIndex(){
           </Menu.Item>
           <SubMenu
             key="sub1"
+            onClick={handleClickArticle}
             title={
               <span>
                 <UserDeleteOutlined />
@@ -38,8 +48,8 @@ function AdminIndex(){
               </span>
             }
           >
-            <Menu.Item key="3">添加文章</Menu.Item>
-            <Menu.Item key="4">文章列表</Menu.Item>
+            <Menu.Item key="addArticle">添加文章</Menu.Item>
+            <Menu.Item key="articleList">文章列表</Menu.Item>
           </SubMenu>
           <Menu.Item key="9">
             <CopyOutlined />
@@ -56,6 +66,8 @@ function AdminIndex(){
           </Breadcrumb>
           <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
             <Route path="/index/" exact  component={AddArticle} />
+            <Route path="/add/" exact  component={AddArticle} />
+            <Route path="/list/" exact  component={ArticleList} />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>JSPang.com</Footer>
