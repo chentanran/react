@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Menu>
-          <MenuItem index={1}>娃哈哈</MenuItem>
+          <MenuItem index={0}>娃哈哈</MenuItem>
           <MenuItem index={2}>爽歪歪</MenuItem>
           <MenuItem index={3}>看看看</MenuItem>
           <MenuItem index={4}>听听听</MenuItem>
