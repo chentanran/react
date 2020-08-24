@@ -3,16 +3,21 @@ import Hello from './component/Helloword'
 import Button, { ButtonSize, ButtonType } from './component/Button/button'
 import Menu from './component/Menu/Menu'
 import MenuItem from './component/Menu/MenuItem'
+import SubMenu from './component/Menu/SubMenu'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Menu>
-          <MenuItem index={0}>娃哈哈</MenuItem>
-          <MenuItem index={2}>爽歪歪</MenuItem>
-          <MenuItem index={3}>看看看</MenuItem>
-          <MenuItem index={4}>听听听</MenuItem>
+        <Menu >
+          <SubMenu title="子菜单">
+            <MenuItem>娃哈哈</MenuItem>
+            <MenuItem>爽歪歪</MenuItem>
+          </SubMenu>
+          <MenuItem>娃哈哈</MenuItem>
+          <MenuItem>爽歪歪</MenuItem>
+          <MenuItem>看看看</MenuItem>
+          <MenuItem>听听听</MenuItem>
         </Menu>
         <Button
           size={ButtonSize.Large}
