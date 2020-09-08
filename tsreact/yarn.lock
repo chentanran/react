@@ -1042,6 +1042,16 @@
   version "10.1.0"
   resolved "http://work.whrckw.com:92/repository/npm-group/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
 
+"@fortawesome/fontawesome-common-types@^0.2.30":
+  version "0.2.30"
+  resolved "http://work.whrckw.com:92/repository/npm-group/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.30.tgz#2f1cc5b46bd76723be41d0013a8450c9ba92b777"
+
+"@fortawesome/fontawesome-svg-core@^1.2.30":
+  version "1.2.30"
+  resolved "http://work.whrckw.com:92/repository/npm-group/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.30.tgz#f56dc6791861fe5d1af04fb8abddb94658c576db"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.30"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "http://work.whrckw.com:92/repository/npm-group/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -7586,7 +7596,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.4"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.6, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "http://work.whrckw.com:92/repository/npm-group/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   dependencies:
@@ -7773,6 +7783,12 @@ react-dom@^16.13.1:
 react-error-overlay@^6.0.7:
   version "6.0.7"
   resolved "http://work.whrckw.com:92/repository/npm-group/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
+
+react-fontawesome@^1.7.1:
+  version "1.7.1"
+  resolved "http://work.whrckw.com:92/repository/npm-group/react-fontawesome/-/react-fontawesome-1.7.1.tgz#f74f5a338fef3ee3b379820109c1cba47290f035"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"

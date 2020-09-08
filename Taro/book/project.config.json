@@ -1,0 +1,15 @@
+{
+	"miniprogramRoot": "dist/",
+	"projectname": "book",
+	"description": "这是一个看书的移动端app",
+	"appid": "wx6192fe5c86ae011d",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"condition": {}
+}
