@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC, ReactElement, useEffect, useState, KeyboardEven
 import Input, { InputProps } from '../Input/input'
 import Icon from '../Icon/icon'
 import useDebounce from '../useDebounce'
+import useClickOutSide from '../useClickOutSide'
 import classNames from 'classnames'
 
 interface DataSourceObject {
@@ -35,6 +36,10 @@ export const AutoComplete: FC<AutoCompleteProps> = props => {
 
   const debounceValue = useDebounce(inputValue)
 
+  useClickOutSide(componentRef, () => {
+    setSuggestions([])
+  })
+
   useEffect(() => {
     if (debounceValue && triggerSearch.current) {
       // 远程搜索
@@ -43,6 +48,9 @@ export const AutoComplete: FC<AutoCompleteProps> = props => {
         setLoading(true)
         results.then(data => {
           setSuggestions(data)
+          setLoading(false)
+        }).catch(() => {
+          alert('请求失败')
           setLoading(false)
         })
       } else {

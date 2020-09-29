@@ -6,6 +6,7 @@ function useClickOutSide(ref: RefObject<HTMLElement>, handler: Function) {
       if (!ref.current || ref.current.contains(event.target as HTMLElement)) {
         return
       }
+      console.log(event, 'event')
       handler(event)
     }
 
