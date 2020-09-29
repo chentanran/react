@@ -53,6 +53,7 @@
     "react": "^16.11.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-app-polyfill": "^1.0.4",
+    "react-data-grid": "^7.0.0-canary.22",
     "react-dev-utils": "^9.1.0",
     "react-dom": "^16.11.0",
     "react-router": "^5.1.2",

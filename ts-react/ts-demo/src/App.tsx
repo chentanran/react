@@ -1,27 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Logo } from './component/Logo'
-import { TodoInput } from './component/Todo/TodoInput'
+import DataGrid from 'react-data-grid';
+import 'react-data-grid/dist/react-data-grid.css';
+
+const columns = [
+  { key: 'id', name: 'ID' },
+  { key: 'title', name: 'Title' }
+];
+
+const rows = [
+  { id: 0, title: 'Example' },
+  { id: 1, title: 'Demo' }
+];
 
 function App() {
+
+  for(let i = 2; i < 10000; i++) {
+    rows.push({ id: 2, title: 'wwwwwwwwwwwwwwwwwwww' })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Logo logo={logo} className="App-logo" alt="logo"></Logo>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {/* <TodoInput handleSubmit={() => '123'}></TodoInput> */}
-      </header>
+    <div className="App" style={{height: 100}}>
+      <DataGrid
+        columns={columns}
+        rows={rows}
+        rowsCount={3}
+      />
     </div>
   );
 }

@@ -6,7 +6,8 @@ import React from 'react';
 // import Transition from './components/transition'
 // import Count from './count/counter'
 // import Pile from './components/pile'
-import Iegend from './components/legend'
+// import Iegend from './components/legend'
+import Table from './components/table'
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       {/* <Transition></Transition> */}
       {/* <Index></Index> */}
       {/* <Home></Home> */}
-      <Iegend></Iegend>
+      {/* <Iegend></Iegend> */}
+      <Table></Table>
     </div>
   );
 }
