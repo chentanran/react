@@ -8,6 +8,7 @@ import SubMenu from './component/Menu/SubMenu'
 import Icon from './component/Icon/icon'
 import Input from './component/Input/input'
 import AutoComplete, { DataSourceType } from './component/AutoComplete/autoComplete'
+import Upload, {UploadFile} from './component/Upload/upload'
 
 library.add(faCoffee, faCheckSquare)
 
@@ -17,6 +18,11 @@ interface RenderOption {
 }
 
 function App() {
+  const defaultFileList: UploadFile[] = [
+    { uid: '123', size: 1234, name: 'hello.md', status: 'uploading', percent: 30 },
+    { uid: '122', size: 1234, name: 'xyz.md', status: 'success', percent: 30 },
+    { uid: '121', size: 1234, name: 'eyiha.md', status: 'error', percent: 30 }
+  ]
 
   const lakers = [
     { value: 'qqq', number: 1 },
@@ -87,6 +93,27 @@ function App() {
           fetchSuggestions={handleFetch}
           renderOption={renderOption}
         />
+      </div>
+      <div>
+        <Upload
+          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          defaultFileList={defaultFileList}
+          name="fileName"
+          drag
+          data={{'key': 'value'}}
+          headers={{'X-Powered-By': 'vikingship'}}
+          onProgress={(arr, file) => {
+            console.log(arr, file, '--------')
+          }}
+          onSuccess={(arr, file) => {
+            console.log(arr, file, '..........')
+          }}
+          onError={(err, file) => {
+            console.log(err, file, ';;;;;;;;;;;;;;;')
+          }}
+        >
+          <p style={{textAlign: 'center'}}>iiii</p>
+        </Upload>
       </div>
     </div>
   );
