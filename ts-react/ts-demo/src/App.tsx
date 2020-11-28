@@ -1,30 +1,76 @@
-import React from 'react';
-import DataGrid from 'react-data-grid';
-import 'react-data-grid/dist/react-data-grid.css';
+import React, { useEffect, useRef } from 'react';
+import { Select, Cascader } from 'antd';
+import 'antd/dist/antd.css'
+import './index.css'
 
-const columns = [
-  { key: 'id', name: 'ID' },
-  { key: 'title', name: 'Title' }
-];
+const { Option } = Select;
 
-const rows = [
-  { id: 0, title: 'Example' },
-  { id: 1, title: 'Demo' }
-];
 
 function App() {
+  const selectRef = useRef<any>()
 
-  for(let i = 2; i < 10000; i++) {
-    rows.push({ id: 2, title: 'wwwwwwwwwwwwwwwwwwww' })
+  useEffect(() => {
+    console.log(selectRef, 'selectRef')
+  })
+
+  const options = [
+    {
+      value: 'zhejiangqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',
+      label: 'Zhejiangwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
+      children: [
+        {
+          value: 'hangzhoueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+          label: 'Hangzhourrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+          children: [
+            {
+              value: 'xihuttttttttttttttttttttttttttttttttttttttttttttttt',
+              label: 'West Lakeyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'jiangsuaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      label: 'Jiangsusssssssssssssssssssssssssssssssssssssssssssssssssss',
+      children: [
+        {
+          value: 'nanjingdddddddddddddddddddddddddddddddddddddddddddddddddd',
+          label: 'Nanjingfffffffffffffffffffffffffffffffffffffffffffffffffffff',
+          children: [
+            {
+              value: 'zhonghuamenxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+              label: 'Zhong Hua Mencccccccccccccccccccccccccccccccccccccccccccccc',
+            },
+          ],
+        },
+      ],
+    },
+  ];
+  
+  function onChange(value: any) {
+    console.log(value);
   }
 
   return (
-    <div className="App" style={{height: 100}}>
-      <DataGrid
-        columns={columns}
-        rows={rows}
-        rowsCount={3}
-      />
+    <div className="App" >
+      <Select ref={selectRef} defaultValue="lucy" style={{ width: 300 }}>
+        <Option value="jack" style={{ width: 300 }} >Jack11111111111111111111111111111111111111111111111111111111111111111111111111</Option>
+        <Option value="lucy" style={{ width: 300 }} >Lucy</Option>
+        <Option value="disabled" disabled style={{ width: 300 }} >
+          Disabled
+        </Option>
+        <Option value="Yiminghe" style={{ width: 300 }} >yiminghe</Option>
+      </Select>
+      <div>----------------------------------</div>
+      <Cascader 
+        options={options} 
+        onChange={onChange} 
+        placeholder="Please select"
+        style={{
+          maxWidth: 230
+        }} 
+      />,
     </div>
   );
 }
