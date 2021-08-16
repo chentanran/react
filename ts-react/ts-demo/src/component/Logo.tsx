@@ -6,10 +6,10 @@ interface IProps {
   alt?: string
 }
 
-export const Logo: React.FC<IProps> = props => {
-    const { logo, className, alt } = props
+export const Logo: React.FC<IProps> = (props:any) => {
+  const { logo, className, alt } = props
 
-    return (
-        <img src={logo} className={className} alt={alt} />
-    )
+  return (
+    <img src={logo} className={className} alt={alt} />
+  )
 }

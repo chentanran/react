@@ -1,4 +1,5 @@
 import React from 'react'
+import { Input } from 'antd'
 // import { TodoInputProps, todoInputDefaultProps, Props } from './props.type'
 
 // interface Props {
@@ -64,15 +65,20 @@ export class TodoInput extends React.Component<Props, State> {
   render() {
     const { inputSetting } = getProps(this.props)
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          ref={this.inputRef}
-          className="edit"
-          maxLength={inputSetting.maxLength}
-          value={this.state.itemText}
-          onChange={this.updateValue}
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            ref={this.inputRef}
+            className="edit"
+            maxLength={inputSetting.maxLength}
+            value={this.state.itemText}
+            onChange={this.updateValue}
+          />
+        </form>
+        <Input 
+          onChange={(v) => { console.log(v, '000') }}
         />
-      </form>
+      </>
     )
   }
 }
