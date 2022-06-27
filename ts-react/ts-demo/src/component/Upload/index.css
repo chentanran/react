@@ -1,0 +1,10 @@
+.bar{
+    background-size:60px 60px;
+	animation:move 1s linear infinite;
+}
+@keyframes move {
+	0% {
+	}100% {
+	background-position:60px 0;
+}
+}
