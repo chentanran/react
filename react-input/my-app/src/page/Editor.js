@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LEditor from '../component/LEditor'
 
 const Editor = () => {
+	const [content, setContent] = useState('12345662332442232')
+
+	useEffect(() => {
+		setTimeout(() => {
+			setContent('哇哈哈真好喝')
+		}, 1000)
+	}, [])
+
 	return (
 		<>
 			<LEditor
-				editorContent={'12345662332442232'}
+				editorContent={content}
 				getContent={() => {}}
 			></LEditor>
 			<LEditor
-				editorContent={'asadsffgdfdfsdsdasa'}
+				editorContent={content}
 				getContent={() => {}}
 			></LEditor>
 		</>

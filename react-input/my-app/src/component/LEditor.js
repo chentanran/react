@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import LEditor from 'wangeditor'
 
-let editor = ''
+
 const Editor = (props) => {
 	const { getContent, editorContent, disabled } = props
+	const editor = useRef()
 
 	const isCursor = disabled ? 'not-allowed' : 'unset'
 	const isPointer = disabled ? 'none' : 'unset'
@@ -13,14 +14,14 @@ const Editor = (props) => {
 	useEffect(() => {
 		const elemMenu = menuRef.current
 		const elemBody = bodyRef.current
-		editor = new LEditor(elemMenu, elemBody)
-		editor.config.onchange = () => {
-			const textValue = editor.txt.html()
+		editor.current = new LEditor(elemMenu, elemBody)
+		editor.current.config.onchange = () => {
+			const textValue = editor.current.txt.html()
 
 			getContent(textValue)
 		}
 
-		editor.config.menus = [
+		editor.current.config.menus = [
 			"head",
 			"bold",
 			"fontSize",
@@ -38,20 +39,20 @@ const Editor = (props) => {
 			"undo",
 			"redo"
 		]
-		editor.config.uploadImgShowBase64 = true
-		editor.config.focus = !disabled
-		editor.create()
+		editor.current.config.uploadImgShowBase64 = true
+		editor.current.config.focus = !disabled
+		editor.current.create()
 	}, [])
 
 	useEffect(() => {
-		if (editor && editorContent) {
-			if (editorContent !== editor.txt.html()) {
-				editor.txt.html(editorContent)
+		if (editor.current && editorContent) {
+			if (editorContent !== editor.current.txt.html()) {
+				editor.current.txt.html(editorContent)
 			}
 		} else {
-			editor.txt.html('')
+			editor.current.txt.html('')
 		}
-	}, [editor && editorContent])
+	}, [editor.current && editorContent])
 
 	return (
 		<div className="contentArea" style={{ cursor: isCursor }}>
